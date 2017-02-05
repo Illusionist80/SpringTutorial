@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Account -->
+	<bean id="fdg" name="acc# ac~!@#$%^*(_+=-':)[]{}/.?\c2 /xyz/abc/savingsController" class="com.springtraining.beannaming.SavingsAccount"></bean>
+	<!-- xsd:ID ...XSD:String -->
+	
+	<!-- <> & " , ; -->
+	<!-- Payment -->
+	<bean name="pmnt p1 p2 P45" class="com.springtraining.beannaming.Payment">
+	    <constructor-arg name="savingsAccount" ref="ac~!@#$%^*(_+=-':)[]{}/.?\c2"></constructor-arg>
+	</bean>
+	
+	<alias name="P45" alias="externalPaymentServce"/>
+
+</beans>

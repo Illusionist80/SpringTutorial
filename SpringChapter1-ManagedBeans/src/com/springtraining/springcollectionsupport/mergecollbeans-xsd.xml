@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="customerBean" abstract="true" class="com.springtraining.springcollectionsupport.Customer">
+
+		<property name="phoneNumberProperty">
+			<props>
+				<prop key="homePhone">345678</prop>
+				<prop key="officePhone">666666666</prop>
+			</props>
+
+		</property>
+
+	</bean>
+	
+	<bean id="mergeTest"  parent="customerBean">
+	
+		<property name="phoneNumberProperty">
+			<props merge="true">
+				<prop key="mobilePhone">9999999999999</prop>
+				<prop key="officePhone">1111111111</prop>
+			</props>
+
+		</property>
+	
+	</bean>
+	
+	
+</beans>

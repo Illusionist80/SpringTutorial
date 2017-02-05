@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:test="http://www.w3.org/2001/XMLSchema-instance"
+	test:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" >
+
+	<!-- Account -->
+	<bean name="acc" class="com.springtraining.SetterInj.SavingsAccount" init-method="customInit" destroy-method="cleanup" >
+      <property name="accountNumber" value="12345"></property>
+      <property name="accountName" ref="accName"></property>
+      <property name="dob"><ref bean="todaysDate"></ref></property>
+	</bean>
+	
+	<bean id="todaysDate" class="java.util.Date">
+		<property name="time" value="563245234542353"></property>
+	</bean>
+	
+	<bean id="accName" class="java.lang.String">
+		<constructor-arg value="MrXyzviaRef"></constructor-arg>
+	</bean>
+
+	<!-- Payment -->
+	<bean name="pmnt " class="com.springtraining.SetterInj.Payment" lazy-init="false">
+		<constructor-arg name="savingsAccount" ref="acc"></constructor-arg>
+	</bean>
+
+</beans>

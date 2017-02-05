@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="customerBean" class="com.springtraining.springcollectionsupport.Customer">
+
+		<property name="phoneNumberSet">
+
+			<set>
+				<value>111111</value>
+				<value>22222</value>
+				<value>22222</value>
+				<bean class="com.springtraining.springcollectionsupport.PhoneNumber">
+					<property name="areaCode" value="1234"></property>
+					<property name="phone" value="6666"></property>
+					<property name="extn" value="9999"></property>
+				</bean>
+				<ref bean="homephone" />
+			</set>
+
+		</property>
+		<property name="phoneNumberMap">
+
+			<map>
+				<entry key="homePhone" value="111111"></entry>
+				<entry key="officePhone" value="22222222"></entry>
+				<entry key="mobilePhone">
+
+					<bean class="com.springtraining.springcollectionsupport.PhoneNumber">
+						<property name="areaCode" value="1234"></property>
+						<property name="phone" value="6666"></property>
+						<property name="extn" value="9999"></property>
+					</bean>
+				</entry>
+				<entry key="emergencyPhone">
+					<ref bean="homephone" />
+				</entry>
+			</map>
+
+		</property>
+		<property name="phoneNumberProperty">
+			<props>
+				<prop key="homePhone">345678</prop>
+				<prop key="officePhone">666666666</prop>
+			</props>
+
+		</property>
+
+
+
+
+	</bean>
+	<bean id="homephone" class="com.springtraining.springcollectionsupport.PhoneNumber">
+		<property name="areaCode" value="4444444"></property>
+		<property name="phone" value="5555555"></property>
+		<property name="extn" value="8888888"></property>
+	</bean>
+</beans>
