@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/task 
+	http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+
+<!-- You can use any of the two datasources implemenation. Dtasources implemenation usually comes with
+the driver in this case mysqlconnector/j jar. So we can use mysqlDatasource or a general one provided by apache's
+basic datasource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/apu"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
+	</bean>
+	<!-- MySql implementation of datasource -->
+	<bean id="mysqldataSource" class="com.mysql.jdbc.jdbc2.optional.MysqlDataSource">
+		<property name="url" value="jdbc:mysql://localhost:3306/apu"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value=""></property>
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="mysqldataSource"></property>
+	</bean>
+	<bean id="userDao" class="springjdbc.simpledbconnectivity.UserDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+	</bean>
+</beans>
