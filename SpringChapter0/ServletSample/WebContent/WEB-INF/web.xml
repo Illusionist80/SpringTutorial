@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <welcome-file-list>
+    <welcome-file>BankHomePage</welcome-file>
+  </welcome-file-list>
+  <display-name>ServletSample</display-name>
+  <servlet>
+    <description></description>
+    <display-name>BankHomePage</display-name>
+    <servlet-name>BankHomePage</servlet-name>
+    <servlet-class>com.training.BankHomePage</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description></description>
+    <display-name>Accounts</display-name>
+    <servlet-name>Accounts</servlet-name>
+    <servlet-class>com.training.Accounts</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description></description>
+    <display-name>Cards</display-name>
+    <servlet-name>Cards</servlet-name>
+    <servlet-class>com.training.Cards</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description></description>
+    <display-name>Loans</display-name>
+    <servlet-name>Loans</servlet-name>
+    <servlet-class>com.training.Loans</servlet-class>
+  </servlet>
+
+  
+  <servlet>
+    <description></description>
+    <display-name>Logon</display-name>
+    <servlet-name>Logon</servlet-name>
+    <servlet-class>com.training.Logon</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description></description>
+    <display-name>ValidateLogon</display-name>
+    <servlet-name>ValidateLogon</servlet-name>
+    <servlet-class>com.training.ValidateLogon</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description></description>
+    <display-name>UserAccounts</display-name>
+    <servlet-name>UserAccounts</servlet-name>
+    <servlet-class>com.training.UserAccounts</servlet-class>
+  </servlet>
+
+  
+  <servlet>
+    <description></description>
+    <display-name>UserCards</display-name>
+    <servlet-name>UserCards</servlet-name>
+    <servlet-class>com.training.UserCards</servlet-class>
+  </servlet>
+
+  
+  <servlet>
+    <description></description>
+    <display-name>UserLoans</display-name>
+    <servlet-name>UserLoans</servlet-name>
+    <servlet-class>com.training.UserLoans</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Cards</servlet-name>
+    <url-pattern>/Cards</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Accounts</servlet-name>
+    <url-pattern>/Accounts</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Loans</servlet-name>
+    <url-pattern>/Loans</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Logon</servlet-name>
+    <url-pattern>/Logon</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+    <servlet-name>ValidateLogon</servlet-name>
+    <url-pattern>/ValidateLogon</url-pattern>
+  </servlet-mapping> 
+    
+  <servlet-mapping>
+    <servlet-name>UserAccounts</servlet-name>
+    <url-pattern>/UserAccounts</url-pattern>
+  </servlet-mapping>
+  
+ <servlet-mapping>
+    <servlet-name>UserCards</servlet-name>
+    <url-pattern>/UserCards</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BankHomePage</servlet-name>
+    <url-pattern>/BankHomePage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserLoans</servlet-name>
+    <url-pattern>/UserLoans</url-pattern>
+  </servlet-mapping>
+  
+</web-app>

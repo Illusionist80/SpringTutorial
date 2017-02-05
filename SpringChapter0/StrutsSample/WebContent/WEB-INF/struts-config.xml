@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+          
+<struts-config>
+    <form-beans>
+        <form-bean name="LoginForm" type="com.bank.LoginForm"/>
+    </form-beans>
+    
+    <global-exceptions>
+    
+    </global-exceptions>
+
+    <global-forwards>
+        <forward name="home"  path="/home.do"/>
+    </global-forwards>
+
+    <action-mappings>
+        
+        <action input="/login.jsp" name="LoginForm" path="/Login" scope="session" type="com.bank.LoginAction">
+            <forward name="success" path="/useraccounts.jsp" />
+            <forward name="failure" path="/failure.jsp" />
+        </action>
+        
+        <action path="/home" forward="/bankhomepage.jsp"/>
+        <action path="/accounts" forward="/accounts.jsp"/>
+        <action path="/loans" forward="/loans.jsp"/>
+        <action path="/cards" forward="/cards.jsp"/>
+        <action path="/logon" forward="/login.jsp"/>
+        
+        <action path="/useraccounts" forward="/useraccounts.jsp"/>
+        <action path="/userloans" forward="/userloans.jsp"/>
+        <action path="/usercards" forward="/usercards.jsp"/>
+    </action-mappings>
+
+    <message-resources parameter="com/bank/ApplicationResource"/>
+
+    
+    <!-- ========================= Validator plugin ================================= -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property
+            property="pathnames"
+            value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+  
+</struts-config>
