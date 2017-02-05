@@ -1,0 +1,25 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<http> 
+	    <intercept-url pattern="/welcome*" access="ROLE_USER" /> 
+		<form-login login-page="/login" default-target-url="/welcome" authentication-failure-url="/loginfailed"/> 
+		<logout logout-success-url="/logout" /> 
+	</http>
+	
+	<authentication-manager>
+		<authentication-provider> 
+		 <password-encoder hash="sha-256"/>  
+			<user-service>
+				<user name="rahul" password="a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3" authorities="ROLE_USER" />
+				<user name="rohit" password="97a6d21df7c51e8289ac1a8c026aaac143e15aa1957f54f42e30d8f8a85c3a55" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>
