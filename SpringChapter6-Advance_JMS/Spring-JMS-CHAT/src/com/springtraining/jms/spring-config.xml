@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/jms 
+                           http://www.springframework.org/schema/jms/spring-jms.xsd
+                           http://activemq.apache.org/schema/core 
+                           http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+
+    <amq:connectionFactory id="mqConnectionFactory" brokerURL="tcp://Toshiba:61616" />
+
+  	<amq:topic id="topic1" physicalName="chattopic"/>
+  	
+	<!-- JMSTemplate is a Spring template that allows us to communicate with
+		 a message broker via JMS. JMSTemplate takes care of boiler plate code such as exception handling
+		 and resource management such as connection pooling. This allows us concentrate on solving the 'business'
+		 problem. We supply the JMS template with the connection factory mentioned above
+     -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="mqConnectionFactory" />
+	</bean>
+  	
+ 
+	<!-- Our message listener implementation that implements the JMS MessageListener interface and implements the
+		 onMessage method to process incoming messages
+	 -->
+	<bean id="basicJMSChat" class="com.springtraining.jms.BasicJMSChat">
+		<property name="chatJMSTemplate" ref="jmsTemplate"></property>
+		<property name="chatTopic" ref="topic1"></property>
+    </bean>
+
+	<!-- DefaultMessageListenerConatiner is the Spring equivalent to an EJB Message Driven Bean.
+	     It polls and consumes messages from a JMS queue.  The configuration below is as follows
+
+	     1. connectionFactory - the connection factory definition used to connect to the Message Broker
+	        which in our case is Active MQ
+	     2. destination - the Queue which the MessageListener container is listening on from incoming messages
+	     3. messageListener - the implementation class that will actually handle the incoming messages. The
+	        DeafultMesssageListener takes messages from the queue and passes them to the message listener for
+	        processing. We've defined our message listener above (testMessageListener)
+	     4. concurrentConsumers - this is the number of threads that the DeafultMesaegListenerContainer will
+	        spawn to handle incoming messages. The default is 1 but in our application we'll have 2 separate
+	        threads processing incoming messages.
+       -->
+		<bean id="poiMessageListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	    	<property name="connectionFactory" ref ="mqConnectionFactory" />
+	    	<property name="destination" ref ="topic1"/>
+			<property name="messageListener" ref ="basicJMSChat"/>
+			<property name="concurrentConsumers" value="1" />
+	    </bean>
+
+</beans>

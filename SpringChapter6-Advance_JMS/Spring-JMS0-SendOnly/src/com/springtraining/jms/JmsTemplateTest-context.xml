@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+	
+  <!-- the pooled ActiveMQ connection factory -->
+  <bean id="connectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+    <constructor-arg value="failover:(tcp://localhost:61616)"/>
+  </bean>
+  
+  <!-- The Spring JmsTemplate to send messages -->
+  <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <constructor-arg ref="connectionFactory"/>
+    <property name="sessionTransacted" value="false"/>
+    <property name="receiveTimeout" value="5000"/>    
+  </bean>
+</beans>
+ 
