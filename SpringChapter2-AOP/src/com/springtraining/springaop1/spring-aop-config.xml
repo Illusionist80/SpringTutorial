@@ -1,0 +1,21 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+	<bean id="testApp1" class="com.springtraining.springaop1.TestApplication" />
+	<bean id="testApp2" class="com.springtraining.springaop1.TestApplication2" />
+	
+	<bean id="sampleAdvice" class="com.springtraining.springaop1.SampleAdvice" />
+
+	<aop:config>
+		<aop:aspect ref="sampleAdvice">
+			<aop:pointcut id="samplePointcut" expression="execution(public void testMethod*(..)) " />
+			<aop:before method="insertBefore" pointcut-ref="samplePointcut" />
+			<aop:after-returning method="insertAfter" pointcut-ref="samplePointcut" />
+		</aop:aspect>
+	</aop:config>
+
+</beans>
